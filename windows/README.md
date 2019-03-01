@@ -1,9 +1,3 @@
-<a href="http://fvcproductions.com"><img src="https://avatars1.githubusercontent.com/u/4284691?v=3&s=200" title="FVCproductions" alt="FVCproductions"></a>
-
-<!-- [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) -->
-
-***INSERT GRAPHIC HERE (include hyperlink in image)***
-
 # Windows Privilege Escalation Techniques
 
 > Subtitle or Short Description Goes Here
@@ -12,54 +6,17 @@
 
 > include terms/tags that can be searched
 
-**Badges will go here**
 
-- Kernel
-- issues (waffle.io maybe)
-- devDependencies
-- npm package
-- coverage
-- slack
-- downloads
-- gitter chat
-- license
-- etc.
+***Linux & Windows local privilege escalation methods tree***
 
-- For more on these wonderful ~~badgers~~ badges, refer to <a href="http://badges.github.io/badgerbadgerbadger/" target="_blank">`badgerbadgerbadger`</a>.
+[![Linux & Windows privilege escalation](https://raw.githubusercontent.com/chmodx/WinNixPE-workshop/master/media/lpe-tree.jpeg)]()
 
-***INSERT ANOTHER GRAPHIC HERE***
 
-[![INSERT YOUR GRAPHIC HERE](https://raw.githubusercontent.com/chmodx/WinNixPE-workshop/master/lpe-tree.jpeg)]()
-
-- Most people will glance at your `README`, *maybe* star it, and leave
-- Ergo, people should understand instantly what your project is about based on your repo
-
-> Tips
-
-- HAVE WHITE SPACE
-- MAKE IT PRETTY
-- GIFS ARE REALLY COOL
-
-> GIF Tools
-
-- Use <a href="http://recordit.co/" target="_blank">**Recordit**</a> to create quicks screencasts of your desktop and export them as `GIF`s.
-- For terminal sessions, there's <a href="https://github.com/chjj/ttystudio" target="_blank">**ttystudio**</a> which also supports exporting `GIF`s.
-
-**Recordit**
-
-![Recordit GIF](http://g.recordit.co/iLN6A0vSD8.gif)
-
-**ttystudio**
-
-![ttystudio GIF](https://raw.githubusercontent.com/chjj/ttystudio/master/img/example.gif)
-
----
-
-## Table of Contents (Optional)
+## Table of Contents
 
 > If you're `README` has a lot of info, section headers might be nice.
 
-- [Kernel](#installation)
+- [Kernel](#kernel)
 - [Features](#features)
 - [Contributing](#contributing)
 - [Team](#team)
@@ -68,74 +25,119 @@
 - [License](#license)
 
 
----
-
-
 ## Kernel
 
-- For all the possible languages that support syntax highlithing on GitHub (which is basically all of them), refer <a href="https://github.com/github/linguist/blob/master/lib/linguist/languages.yml" target="_blank">here</a>.
+[![Windows architecture](https://raw.githubusercontent.com/chmodx/WinNixPE-workshop/master/media/windows-architecture.png)]()
 
-> update and install this package first
+> As shown in the above diagram, the Windows operating system has two main components: user mode and kernel mode, refer <a href="https://en.wikipedia.org/wiki/Architecture_of_Windows_NT" target="_blank">here</a>.
+
+> **HACK AWAY!** 🔨🔨🔨 
+
+#### **#1 Step | 🔎 Information Gathering**
+	
+- **Option 1** 🔪 Get `systeminfo` and use `windows-exploit-suggester` which based upon the hotfix data.
+
+    - Execute `systeminfo` on the target machine then copy and save on the attacker machine.
+     - Use [windows-exploit-suggester](#windows-exploit-suggester):
+    	- First, update the tool then we get file in the `XLS` format.
+    	- Using this `XLS` file and system information execute the tool and observe potential exploits list.
+    	
+## windows-exploit-suggester
+> This tool compares a targets patch levels against the Microsoft vulnerability database in order to detect potential missing patches on the target. It also notifies the user if there are public exploits and Metasploit modules available for the missing bulletins. It requires the 'systeminfo' command output from a Windows host in order to compare that the Microsoft security bulletin database and determine the patch level of the host, refer <a href="https://github.com/GDSSecurity/Windows-Exploit-Suggester" target="_blank">here</a>.
 
 ```shell
-$ brew update
-$ brew install fvcproductions
+$  ./windows-exploit-suggester.py --update
+[*] initiating winsploit version 3.3...
+[+] writing to file 2019-02-28-mssb.xls
+[*] done
 ```
-
-> now install npm and bower packages
 
 ```shell
-$ npm install
-$ bower install
+$ ./windows-exploit-suggester.py --database 2019-02-28-mssb.xls --systeminfo systeminfo.txt
+[*] initiating winsploit version 3.3...
+[*] database file detected as xls or xlsx based on extension
+[*] attempting to read from the systeminfo input file
+[+] systeminfo input file read successfully (ascii)
+[*] querying database file for potential vulnerabilities
+[*] comparing the 2 hotfix(es) against the 386 potential bulletins(s) with a database of 137 known exploits
+[*] there are now 386 remaining vulns
+[+] [E] exploitdb PoC, [M] Metasploit module, [*] missing bulletin
+[+] windows version identified as 'Windows 7 SP1 64-bit'
+[*]
+[E] MS16-135: Security Update for Windows Kernel-Mode Drivers (3199135) - Important
+[*]   https://www.exploit-db.com/exploits/40745/ -- Microsoft Windows Kernel - win32k Denial of Service (MS16-135)
+[*]   https://www.exploit-db.com/exploits/41015/ -- Microsoft Windows Kernel - 'win32k.sys' 'NtSetWindowLongPtr' Privilege Escalation (MS16-135) (2)
+[*]   https://github.com/tinysec/public/tree/master/CVE-2016-7255
+....
+[*]   http://www.exploit-db.com/exploits/35236/ -- MS14-064 Microsoft Windows OLE Package Manager Code Execution, MSF
+[*]
+[M] MS14-060: Vulnerability in Windows OLE Could Allow Remote Code Execution (3000869) - Important
+[*]   http://www.exploit-db.com/exploits/35055/ -- Windows OLE - Remote Code Execution 'Sandworm' Exploit (MS14-060), PoC
+[*]   http://www.exploit-db.com/exploits/35020/ -- MS14-060 Microsoft Windows OLE Package Manager Code Execution, MSF
+[*]
+[M] MS14-058: Vulnerabilities in Kernel-Mode Driver Could Allow Remote Code Execution (3000061) - Critical
+[*]   http://www.exploit-db.com/exploits/35101/ -- Windows TrackPopupMenu Win32k NULL Pointer Dereference, MSF
 ```
 
-- For all the possible languages that support syntax highlithing on GitHub (which is basically all of them), refer <a href="https://github.com/github/linguist/blob/master/lib/linguist/languages.yml" target="_blank">here</a>.
 
+- **Option 2** 🔪 Use PowerShell script [Sherlock](https://github.com/rasta-mouse/Sherlock/blob/master/Sherlock.ps1){:target="_blank"} to find missing software patches for privilege escalation.
+
+	- 👯 Clone this repo to your local (attacker) machine using `https://github.com/rasta-mouse/Sherlock`
+     - Transfer the `Sherlock.ps1` PowerShell script to the target machine. [How transfer file to target machine ?](link)
+     -  After, execute the script on the target machine with spesial flag as shown below.
+     ```cmd
+     powershell.exe -nop -exec bypass -Command "& {Import-Module .\Sherlock.ps1; Find-AllVulns}"
+     ```
+
+```cmd
+C:\Users\user>powershell.exe -nop -exec bypass -Command "& {Import-Module .\Sherlock.ps1; Find-AllVulns}"
+...
+
+Title      : User Mode to Ring (KiTrap0D)
+MSBulletin : MS10-015
+CVEID      : 2010-0232
+Link       : https://www.exploit-db.com/exploits/11199/
+VulnStatus : Not supported on 64-bit systems
+
+Title      : Task Scheduler .XML
+MSBulletin : MS10-092
+CVEID      : 2010-3338, 2010-3888
+Link       : https://www.exploit-db.com/exploits/19930/
+VulnStatus : Not Vulnerable
+
+Title      : NTUserMessageCall Win32k Kernel Pool Overflow
+MSBulletin : MS13-053
+CVEID      : 2013-1300
+Link       : https://www.exploit-db.com/exploits/33213/
+VulnStatus : Not supported on 64-bit systems
+
+Title      : TrackPopupMenuEx Win32k NULL Page
+MSBulletin : MS13-081
+CVEID      : 2013-3881
+Link       : https://www.exploit-db.com/exploits/31576/
+VulnStatus : Not supported on 64-bit systems
+
+Title      : TrackPopupMenu Win32k Null Pointer Dereference
+MSBulletin : MS14-058
+CVEID      : 2014-4113
+Link       : https://www.exploit-db.com/exploits/35101/
+VulnStatus : Appears Vulnerable
+
+Title      : ClientCopyImage Win32k
+MSBulletin : MS15-051
+CVEID      : 2015-1701, 2015-2433
+Link       : https://www.exploit-db.com/exploits/37367/
+VulnStatus : Appears Vulnerable
+
+```
+
+#### **#2 Step | 🎯 Exploit**
+#####❗️ We can download exploit via [searchploit](https://www.exploit-db.com/searchsploit){:target="_blank"} tool then compile this or use compiled exploit from the [here](https://github.com/SecWiki/windows-kernel-exploits){:target="_blank"}. 
 ---
 
-## Features
-## Usage (Optional)
-## Documentation (Optional)
-## Tests (Optional)
 
-- Going into more detail on code and technologies used
-- I utilized this nifty <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">Markdown Cheatsheet</a> for this sample `README`.
 
----
 
-## Contributing
-
-> To get started...
-
-### Step 1
-
-- **Option 1**
-    - 🍴 Fork this repo!
-
-- **Option 2**
-    - 👯 Clone this repo to your local machine using `https://github.com/joanaz/HireDot2.git`
-
-### Step 2
-
-- **HACK AWAY!** 🔨🔨🔨
-
-### Step 3
-
-- 🔃 Create a new pull request using <a href="https://github.com/joanaz/HireDot2/compare/" target="_blank">`https://github.com/joanaz/HireDot2/compare/`</a>.
-
----
-
-## Team
-
-> Or Contributors/People
-
-| <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> | <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> | <a href="http://fvcproductions.com" target="_blank">**FVCproductions**</a> |
-| :---: |:---:| :---:|
-| [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)    | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com) | [![FVCproductions](https://avatars1.githubusercontent.com/u/4284691?v=3&s=200)](http://fvcproductions.com)  |
-| <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> | <a href="http://github.com/fvcproductions" target="_blank">`github.com/fvcproductions`</a> |
-
-- You can just grab their GitHub profile image URL
-- You should probably resize their picture using `?s=200` at the end of the image URL.
 
 ---
 

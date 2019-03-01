@@ -17,7 +17,7 @@
 > If you're `README` has a lot of info, section headers might be nice.
 
 - [Kernel](#kernel)
-- [Features](#features)
+- [Weak Service Permissions](#weak-service-permissions)
 - [Contributing](#contributing)
 - [Team](#team)
 - [FAQ](#faq)
@@ -132,13 +132,12 @@ VulnStatus : Appears Vulnerable
 ```
 
 #### **#2 Step | 🎯 Exploit**
-#####❗️ We can download exploit via [searchploit](https://www.exploit-db.com/searchsploit){:target="_blank"} tool then compile this or use compiled exploit from the [here](https://github.com/SecWiki/windows-kernel-exploits){:target="_blank"}. 
+#####❗️ We can download exploit via <a href="https://www.exploit-db.com/searchsploit" target="_blank">searchploit</a> tool then compile this or use compiled exploit from the <a href="https://github.com/SecWiki/windows-kernel-exploits" target="_blank">here</a>.  
 ---
 
+## Weak Service Permissions
 
-
-
-
+> It is very often in Windows environments to discover services that run with SYSTEM privileges and they don’t have the appropriate permissions set by the administrator. This means that either the user has permissions over the service or over the folder of where the binary of the service is stored or even worse both. These services can be found mostly in third party software and can be used as an escalation point from user to administrator, refer <a href="https://pentestlab.blog/2017/03/30/weak-service-permissions/" target="_blank">here</a>.
 ---
 
 ## FAQ

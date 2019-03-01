@@ -80,7 +80,7 @@ $ ./windows-exploit-suggester.py --database 2019-02-28-mssb.xls --systeminfo sys
 ```
 
 
-- **Option 2** 🔪 Use PowerShell script [Sherlock](https://github.com/rasta-mouse/Sherlock/blob/master/Sherlock.ps1){:target="_blank"} to find missing software patches for privilege escalation.
+- **Option 2** 🔪 Use PowerShell script <a href="https://github.com/rasta-mouse/Sherlock/blob/master/Sherlock.ps1" target="_blank">Sherlock</a> to find missing software patches for privilege escalation.
 
 	- 👯 Clone this repo to your local (attacker) machine using `https://github.com/rasta-mouse/Sherlock`
      - Transfer the `Sherlock.ps1` PowerShell script to the target machine. [How transfer file to target machine ?](link)
@@ -132,7 +132,7 @@ VulnStatus : Appears Vulnerable
 ```
 
 #### **#2 Step | 🎯 Exploit**
-#####❗️ We can download exploit via [searchploit](https://www.exploit-db.com/searchsploit){:target="_blank"} tool then compile this or use compiled exploit from the [here](https://github.com/SecWiki/windows-kernel-exploits){:target="_blank"}. 
+#####❗️ We can download exploit via <a href="https://www.exploit-db.com/searchsploit" target="_blank">searchploit</a> tool then compile this or use compiled exploit from the <a href="https://github.com/SecWiki/windows-kernel-exploits" target="_blank">here</a>. 
 ---
 
 

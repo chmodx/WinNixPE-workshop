@@ -17,7 +17,7 @@
 > If you're `README` has a lot of info, section headers might be nice.
 
 - [Kernel](#kernel)
-- [Weak Service Permissions](#weak-service-permissions)
+- [Features](#features)
 - [Contributing](#contributing)
 - [Team](#team)
 - [FAQ](#faq)
@@ -34,14 +34,14 @@
 > **HACK AWAY!** 🔨🔨🔨 
 
 #### **#1 Step | 🔎 Information Gathering**
-	
+    
 - **Option 1** 🔪 Get `systeminfo` and use `windows-exploit-suggester` which based upon the hotfix data.
 
     - Execute `systeminfo` on the target machine then copy and save on the attacker machine.
      - Use [windows-exploit-suggester](#windows-exploit-suggester):
-    	- First, update the tool then we get file in the `XLS` format.
-    	- Using this `XLS` file and system information execute the tool and observe potential exploits list.
-    	
+        - First, update the tool then we get file in the `XLS` format.
+        - Using this `XLS` file and system information execute the tool and observe potential exploits list.
+        
 ## windows-exploit-suggester
 > This tool compares a targets patch levels against the Microsoft vulnerability database in order to detect potential missing patches on the target. It also notifies the user if there are public exploits and Metasploit modules available for the missing bulletins. It requires the 'systeminfo' command output from a Windows host in order to compare that the Microsoft security bulletin database and determine the patch level of the host, refer <a href="https://github.com/GDSSecurity/Windows-Exploit-Suggester" target="_blank">here</a>.
 
@@ -80,9 +80,9 @@ $ ./windows-exploit-suggester.py --database 2019-02-28-mssb.xls --systeminfo sys
 ```
 
 
-- **Option 2** 🔪 Use PowerShell script [Sherlock](https://github.com/rasta-mouse/Sherlock/blob/master/Sherlock.ps1){:target="_blank"} to find missing software patches for privilege escalation.
+- **Option 2** 🔪 Use PowerShell script <a href="https://github.com/rasta-mouse/Sherlock/blob/master/Sherlock.ps1" target="_blank">Sherlock</a> to find missing software patches for privilege escalation.
 
-	- 👯 Clone this repo to your local (attacker) machine using `https://github.com/rasta-mouse/Sherlock`
+    - 👯 Clone this repo to your local (attacker) machine using `https://github.com/rasta-mouse/Sherlock`
      - Transfer the `Sherlock.ps1` PowerShell script to the target machine. [How transfer file to target machine ?](link)
      -  After, execute the script on the target machine with spesial flag as shown below.
      ```cmd
@@ -132,12 +132,13 @@ VulnStatus : Appears Vulnerable
 ```
 
 #### **#2 Step | 🎯 Exploit**
-#####❗️ We can download exploit via <a href="https://www.exploit-db.com/searchsploit" target="_blank">searchploit</a> tool then compile this or use compiled exploit from the <a href="https://github.com/SecWiki/windows-kernel-exploits" target="_blank">here</a>.  
+#####❗️ We can download exploit via <a href="https://www.exploit-db.com/searchsploit" target="_blank">searchploit</a> tool then compile this or use compiled exploit from the <a href="https://github.com/SecWiki/windows-kernel-exploits" target="_blank">here</a>. 
 ---
 
-## Weak Service Permissions
 
-> It is very often in Windows environments to discover services that run with SYSTEM privileges and they don’t have the appropriate permissions set by the administrator. This means that either the user has permissions over the service or over the folder of where the binary of the service is stored or even worse both. These services can be found mostly in third party software and can be used as an escalation point from user to administrator, refer <a href="https://pentestlab.blog/2017/03/30/weak-service-permissions/" target="_blank">here</a>.
+
+
+
 ---
 
 ## FAQ

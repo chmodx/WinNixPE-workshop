@@ -17,7 +17,7 @@
 > If you're `README` has a lot of info, section headers might be nice.
 
 - [Kernel](#kernel)
-- [Features](#features)
+- [Weak Service Permissions](#weak-service-permissions)
 - [Contributing](#contributing)
 - [Team](#team)
 - [FAQ](#faq)
@@ -135,16 +135,20 @@ VulnStatus : Appears Vulnerable
 #####❗️ We can download exploit via <a href="https://www.exploit-db.com/searchsploit" target="_blank">searchploit</a> tool then compile this or use compiled exploit from the <a href="https://github.com/SecWiki/windows-kernel-exploits" target="_blank">here</a>. 
 ---
 
+## Weak Service Permissions
 
+- Every object that can have an `security descriptor (SD)` is a securable object that may be protected by permissions. A security descriptor contains the security information associated with a securable object.
 
+- `SD` can include the following security information:
+    + A `discretionary access control list (DACL)` that specifies the access rights allowed or denied to particular users or groups.
+    + A `system access control list  (SACL)` that specifies the types of access attempts that generate audit records for the object.
 
 
 ---
 
 ## FAQ
 
-- **How do I do *specifically* so and so?**
-    - No problem! Just do this.
+- [How transfer file to target machine ?](link)
 
 ---
 
@@ -152,18 +156,9 @@ VulnStatus : Appears Vulnerable
 
 Reach out to me at one of the following places!
 
-- Website at <a href="http://fvcproductions.com" target="_blank">`fvcproductions.com`</a>
-- Twitter at <a href="http://twitter.com/fvcproductions" target="_blank">`@fvcproductions`</a>
-- Insert more social links here.
-
----
-
-## Donations (Optional)
-
-- You could include a <a href="https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.png" target="_blank">Gratipay</a> link as well.
-
-[![Support via Gratipay](https://cdn.rawgit.com/gratipay/gratipay-badge/2.3.0/dist/gratipay.png)](https://gratipay.com/fvcproductions/)
-
+- Website at <a href="http://chmodx.com" target="_blank">`chmodx.com`</a>
+- Twitter at <a href="https://twitter.com/b4ut4" target="_blank">`@b4ut4`</a>
+- Linkedin at <a href="https://www.linkedin.com/in/b4ut4/" target="_blank">`Ali Huseyn Aliyev`</a>
 
 ---
 
@@ -172,4 +167,4 @@ Reach out to me at one of the following places!
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 - **[MIT license](http://opensource.org/licenses/mit-license.php)**
-- Copyright 2015 © <a href="http://fvcproductions.com" target="_blank">FVCproductions</a>.
+- Copyright 2019 © <a href="http://chmodx.com" target="_blank">chmodx</a>.

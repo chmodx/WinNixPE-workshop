@@ -140,8 +140,15 @@ VulnStatus : Appears Vulnerable
 - Every object that can have an `security descriptor (SD)` is a securable object that may be protected by permissions. A security descriptor contains the security information associated with a securable object.
 
 - `SD` can include the following security information:
-    + A `discretionary access control list (DACL)` that specifies the access rights allowed or denied to particular users or groups.
     + A `system access control list  (SACL)` that specifies the types of access attempts that generate audit records for the object.
+    + A `discretionary access control list (DACL)` that specifies the access rights allowed or denied to particular users or groups. We can see in the below picture permission list (DACLs) for `Windows Explorer`  object.
+    
+        [![Permissions List](https://raw.githubusercontent.com/chmodx/WinNixPE-workshop/master/media/list_of_permissions.png)]()
+
+    + `Security Descriptor Definition Language (SDDL)` defines the string format that is used to describe a security descriptor as a text string.
+    
+        [![SDDL](https://raw.githubusercontent.com/chmodx/WinNixPE-workshop/master/media/list_of_permissions.png)]()
+    
 
 
 ---

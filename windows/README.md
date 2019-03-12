@@ -35,7 +35,7 @@
 
 #### **#1 Step | 🔎 Information Gathering**
     
-- **Option 1** 🔪 Get `systeminfo` and use `windows-exploit-suggester` which based upon the hotfix data.
+- **#1 Option** 🔪 Get `systeminfo` and use `windows-exploit-suggester` which based upon the hotfix data.
 
     - Execute `systeminfo` on the target machine then copy and save on the attacker machine.
      - Use [windows-exploit-suggester](#windows-exploit-suggester):
@@ -80,7 +80,7 @@ $ ./windows-exploit-suggester.py --database 2019-02-28-mssb.xls --systeminfo sys
 ```
 
 
-- **Option 2** 🔪 Use PowerShell script <a href="https://github.com/rasta-mouse/Sherlock/blob/master/Sherlock.ps1" target="_blank">Sherlock</a> to find missing software patches for privilege escalation.
+- **#2 Option** 🔪 Use PowerShell script <a href="https://github.com/rasta-mouse/Sherlock/blob/master/Sherlock.ps1" target="_blank">Sherlock</a> to find missing software patches for privilege escalation.
 
     - 👯 Clone this repo to your local (attacker) machine using `https://github.com/rasta-mouse/Sherlock`
      - Transfer the `Sherlock.ps1` PowerShell script to the target machine. [How transfer file to target machine ?](link)
@@ -146,8 +146,39 @@ VulnStatus : Appears Vulnerable
         [![Permissions List](https://raw.githubusercontent.com/chmodx/WinNixPE-workshop/master/media/list_of_permissions.png)]()
 
     + `Security Descriptor Definition Language (SDDL)` defines the string format that is used to describe a security descriptor as a text string.
+
+        [![SDDL Example](https://raw.githubusercontent.com/chmodx/WinNixPE-workshop/master/media/SDDL-example.png)]()
+        The screenshot taken from the repo `https://github.com/sagishahar/lpeworkshop`
+
+> **HACK AWAY!** 🔨🔨🔨
+
+#### **#1 Step | 🔎 Information Gathering**
     
-        [![SDDL](https://raw.githubusercontent.com/chmodx/WinNixPE-workshop/master/media/list_of_permissions.png)]()
+- **#1 Option** 🔪 Use a `PowerUp` PowerShell script which included the <a href="https://github.com/PowerShellMafia/PowerSploit" target="_blank">`PowerSploit`</a> Post-Exploitation Framework.
+
+    - Download the script to your local (attacker) machine from `https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1`
+     - Transfer the `PowerUp.ps1` PowerShell script to the target machine. [How transfer file to target machine ?](link)
+     -  After, execute the script on the target machine with spesial flag as shown below.
+     ```cmd
+     powershell.exe -nop -exec bypass -Command "& {Import-Module .\Sherlock.ps1; Find-AllVulns}"
+     ```
+
+- **#2 Option** 🔪 We will be checking a lot of access rights so we should grab a copy of `Accesschk` which is a tool from Microsoft's Sysinternals Suite. You can get additionals information from Microsoft technet <a href="https://docs.microsoft.com/en-us/sysinternals/downloads/accesschk" target="_blank">here</a>.
+
+    - Download the file in a zip format to your local (attacker) machine from `https://download.sysinternals.com/files/AccessChk.zip` then extract.
+     - Transfer the `accesschk64.exe` executable file to the target machine. [How transfer file to target machine ?](link)
+     -  After, execute the script on the target machine with spesial flag as shown below (<font color="red">In our cases username is user</font>).
+     ```cmd
+     powershell.exe -nop -exec bypass -Command "& {Import-Module .\Sherlock.ps1; Find-AllVulns}"
+     ```
+
+```mermaid
+graph TD;
+  A-->B;
+  A-->C;
+  B-->D;
+  C-->D;
+```
     
 
 

